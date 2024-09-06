@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="icon" href="icon2.png">
+    <style>
+      body {
+        background-image: url("buisness.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      
+      .container {
+        text-align: center;
+      }
+      
+      .container button {
+        background-color:black; /* Set the initial background color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 30px;
+        transition: background-color 0.3s; /* Add transition for smooth effect */
+      }
+      
+      .container button:hover {
+        background-color: rgb(50, 187, 205); /* Change the background color on hover */
+      }
+      
+      .welcome-message {
+        color:indigo;
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+    </style>
+    <script>
+      function welcome1() {
+        window.location.href = "view1.php";
+      }
+      
+      function fetchUserName() {
+        // Make an AJAX request to a PHP file that retrieves the user's name
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'username1.php', true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              var userName = xhr.responseText;
+              displayWelcomeMessage(userName); // Call the displayWelcomeMessage function with the retrieved username
+            } else {
+              console.log('Error:', xhr.status);
+            }
+          }
+        };
+        xhr.send();
+      }
+      
+      function displayWelcomeMessage(userName) {
+        var container = document.querySelector('.container');
+        var welcomeMessage = document.createElement('p');
+        welcomeMessage.innerText = 'Welcome, ' + userName + '!';
+        welcomeMessage.classList.add('welcome-message');
+        container.insertBefore(welcomeMessage, container.firstChild);
+      }
+      
+      // When the page loads, fetch the username and display the welcome message
+      window.addEventListener('load', function() {
+        fetchUserName();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <p class="welcome-message"></p>
+      <button onclick="welcome1()">View Ideas</button>
+    </div>
+  </body>
+</html>

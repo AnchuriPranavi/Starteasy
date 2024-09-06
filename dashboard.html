@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link rel="icon" href="icon2.png">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+      body {
+        background-image: url("dashboard.png");
+        background-size: cover;
+        background-position: center center;
+      }
+      .container {
+        margin-left: 400px;
+      }
+      .container button {
+        border-radius: 30px; /* Adjust the value to make the buttons more or less round */
+        background-color: darkcyan;
+        color: white;
+        cursor: pointer;
+        margin: 5px;
+      }
+      .container button:hover {
+        background-color: indianred;
+        /* Change the background color on hover */
+      }
+    
+      .welcome-message {
+        position: fixed;
+        top: 30%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        font-size: 60px; /* Adjust the font size as needed */
+        color: cornsilk; 
+      }
+    </style>
+    <script>
+      function displayWelcomeMessage(userName) {
+        var welcomeMessage = document.getElementById('welcome-message');
+        welcomeMessage.textContent = 'Welcome, ' + userName + '!';
+      }
+
+      function welcome() {
+        window.location.href = 'create.html'; // Redirect to create.html
+      }
+      
+      function welcome1() {
+        window.location.href = 'titles.php';
+      }
+
+      function fetchUserName() {
+        // Make an AJAX request to a PHP file that retrieves the user's name
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'username.php', true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              var userName = xhr.responseText;
+              displayWelcomeMessage(userName); // Call the displayWelcomeMessage function with the retrieved username
+            } else {
+              console.log('Error:', xhr.status);
+            }
+          }
+        };
+        xhr.send();
+      }
+
+      // When the page loads, fetch the username and display the welcome message
+      window.addEventListener('load', function() {
+        fetchUserName();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="welcome-message" class="welcome-message"></div>
+      <button onclick="welcome()">Create Idea</button>
+      <button onclick="welcome1()">View Ideas</button>
+    </div>
+  </body>
+</html>

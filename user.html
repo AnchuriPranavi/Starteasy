@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>user login</title>
+    <link rel="icon" href="icon2.png">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        body {
+            background-image: url("blue.png");
+        }
+
+        .login-container {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Boy icon */
+        .boy-icon {
+            position: absolute;
+            top: -70px;
+            left: calc(50% - 35px);
+            width: 70px;
+            height: 70px;
+            background-image: url("girlopen.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        /* Closed eyes */
+        .boy-icon.closed-eyes {
+            background-image: url("girlclose.png");
+        }
+
+        /* Eye button */
+        .eye-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .eye-icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Error message */
+        .error-message {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 97%;
+            padding: 10px;
+            background-color: #ffdddd;
+            color: #ff0000;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+            margin-top: 40px;
+        }
+    </style>
+    <script>
+        // Toggle boy's eyes based on form inputs
+        function toggleBoyEyes() {
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
+            var boyIcon = document.getElementById('boy-icon');
+
+            usernameInput.addEventListener('input', function() {
+                boyIcon.classList.remove('closed-eyes');
+            });
+
+            passwordInput.addEventListener('input', function() {
+                boyIcon.classList.add('closed-eyes');
+            });
+        }
+
+        // Show/hide password
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('password');
+            var eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.src = 'eye-open.png';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.src = 'eye-closed.png';
+            }
+        }
+
+        // Submit the form using AJAX
+        function submitForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var errorContainer = document.getElementById('error-message');
+
+            // Create AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'login.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            // Redirect to the dashboard
+                            window.location.href = 'dashboard.html';
+                        } else {
+                            // Display the error message
+                            errorContainer.innerText = response.message;
+                            errorContainer.style.display = 'block';
+                        }
+                    } else {
+                        // Handle the error case
+                        errorContainer.innerText = 'An error occurred.';
+                        errorContainer.style.display = 'block';
+                    }
+                }
+            };
+
+            // Send the request
+            xhr.send('username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password));
+        }
+    </script>
+</head>
+<body onload="toggleBoyEyes()">
+    <div class="main">
+        <h1></h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="login-container">
+        <div class="boy-icon" id="boy-icon"></div>
+
+        <form onsubmit="event.preventDefault(); submitForm();">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+
+            <label for="password">Password</label>
+            <div style="position: relative;">
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <div class="eye-icon" onclick="togglePasswordVisibility()">
+                    <img id="eye-icon" src="eye-closed.png" alt="Eye icon">
+                </div>
+            </div>
+
+            <input type="submit" value="Login">
+            <div class="col-auto"><center>
+                <a href="forgot_password.html">Forgot Password?</a>
+                <br>
+                <div> Dont have an account  <a href="reg1.html" > signup?</a>
+                </center>
+                
+            </div>
+        </form>
+
+        <div class="error-message" id="error-message"></div>
+    </div>
+</body>
+</html>

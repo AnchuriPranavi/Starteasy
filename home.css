@@ -1,0 +1,62 @@
+body {
+   background-image: url("black.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+.main{
+ background-image:url("black.png");
+   /*background-color: black;*/
+    display: flex;
+    justify-content: space-between;
+
+}
+.main h1{
+    margin-left: 20px;
+ color:aliceblue
+}
+.main ul{
+    list-style: none;
+    display: flex;
+}
+.main ul li{
+    margin-top:40px;
+    margin-right: 30px;
+
+}
+.main ul li a{
+    color:aliceblue;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20x 30px;
+}
+.main ul li a:hover{
+    color:aqua;
+}
+.main ul li a.home,
+.main ul li a.start-easy,
+.main ul li a.login,
+.main ul li a.about {
+    background-color: transparent;
+    background-image: none;
+}
+/* Styles for the dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>user login</title>
+        <link rel="icon" href="icon2.png">  
+    <link rel="stylesheet" href="login.css">
+    <style>
+        
+        .login-container {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Boy icon */
+        .boy-icon {
+            position: absolute;
+            top: -70px;
+            left: calc(50% - 35px);
+            width: 70px;
+            height: 70px;
+            background-image: url('girlopen.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        /* Closed eyes */
+        .boy-icon.closed-eyes {
+            background-image: url('girlclose.png');
+        }
+    </style>
+    <script>
+        // Toggle boy's eyes based on form inputs
+        function toggleBoyEyes() {
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
+            var boyIcon = document.getElementById('boy-icon');
+
+            usernameInput.addEventListener('input', function() {
+                boyIcon.classList.remove('closed-eyes');
+            });
+
+            passwordInput.addEventListener('input', function() {
+                boyIcon.classList.add('closed-eyes');
+            });
+        }
+    </script>
+</head>
+<body onload="toggleBoyEyes()">
+    <div class="main">
+        <h1></h1>
+        <br>
+        <br>
+        <br>
+        <br>
+<br>
+<br>
+<br>
+<br>
+    </div>
+
+    <div class="login-container">
+        <div class="boy-icon" id="boy-icon"></div>
+
+        <form>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>

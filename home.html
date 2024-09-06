@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>starteasy</title>
+    <link rel="icon" href="icon2.png">
+    <link rel="stylesheet" href="home.css">
+    <style>
+    
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        /* Image styling */
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Show first slide by default */
+        .slide.active {
+            opacity: 1;
+        }
+        
+        /* Main section styling */
+        .main {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8); /* Add desired background color */
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>STARTEASY</h1>
+        <ul>
+            <li><a href="home.html">HOME</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">LOGIN</a>
+                <div class="dropdown-content">
+                    <a href="user.html">user</a>
+                    <a href="investorlogin.html">investor</a>
+                    
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">REGISTER</a>
+                <div class="dropdown-content">
+                    <a href="reg1.html">user</a>
+                    <a href="reg2.html">investor</a>
+                </div>
+            </li>
+            <li><a href="about.html">ABOUT</a></li>
+        </ul>
+    </div>
+
+    <div class="slideshow">
+        <div class="slide active">
+            <img src="img.png" alt="Slide 1">
+        </div>
+        <div class="slide">
+            <img src="investor.png" alt="Slide 2">
+        </div>
+        
+        <div class="slide">
+            <img src="user.png" alt="Slide 3">
+        </div>
+    </div>
+
+    <script>
+        // Automatic slide transition
+        let slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        let slideInterval = setInterval(nextSlide, 3000);
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
+</body>
+</html>

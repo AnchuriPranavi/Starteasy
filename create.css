@@ -1,0 +1,63 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+  }
+  body
+  { 
+   
+    background-size:cover;
+    color: #000;
+    background-repeat:no repeat;
+    background-attachment:fixed;
+  }
+  .creation 
+  {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:400px;
+  }
+  .creation h1
+  {
+    font-size:30px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:40px 0;
+  }
+  .creation label
+  {
+    margin:15px 0;
+    font-size:20px;
+    color:#fff;
+  }
+  .creation input
+  {
+    font-size:20px;
+  padding:15px 10px;
+  width:100%;
+  border:0;
+  border-radius:5px;
+  outline:solid;
+  }
+  .creation textarea
+  {
+    font-size:20px;
+  padding:15px 10px;
+  width:100%;
+  border:0;
+  border-radius:5px;
+  outline:solid;
+  }
+  .creation button
+  {
+   font-size:20px;
+   font-weight:bold;
+   margin:20px 0;
+  padding:10px 15px;
+  width:50%;
+  border:0;
+  border-radius:5px;
+    
+  }

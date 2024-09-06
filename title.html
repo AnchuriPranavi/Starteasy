@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <style>
+        p {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    
+    <?php
+    session_start(); // Start the session
+
+    // Database connection configuration
+    $host = "localhost";
+    $dbname = "user";
+    $username = "root";
+    $password = "";
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+
+    // Retrieve the logged-in user's username from the session
+    $logged_in_username = $_SESSION['username'];
+
+    // Query the database to retrieve all "title" column details associated with the logged-in user's username
+    $query = "SELECT title FROM registration WHERE email = :username";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':username', $logged_in_username);
+    $stmt->execute();
+    $titles = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Display the titles as links or buttons
+    foreach ($titles as $title) {
+        echo '<a href="titles.php?title=' . urlencode($title) . '">' . $title . '</a><br>';
+    }
+    ?>
+    
+    <p style="color: black;">This is a statement below the fetched titles.</p>
+    
+</body>
+</html>

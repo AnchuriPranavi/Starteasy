@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <title>Create Idea</title>
+     <link rel="icon" href="icon2.png">
+     <link rel="stylesheet" href="create.css">
+     <style>
+     body{ 
+        background-image: url("creative.png");
+        background-size: cover;
+         }
+     </style>
+  </head>
+  <body>
+    <div class="creation"><br><br>
+      <form action="create.php" method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="your-csrf-token-here">
+        <br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br><br><br><br><br><br><br><
+
+         <h1 style="color:white;">Idea!!</h1>
+         <label for="full name">FullName:  </label>
+         <input type="text" name="fullname" id="FullName" required placeholder="Enter the Full name">
+        
+        <br>
+        <br>
+       
+        <label for="email">E-Mail id:     </label>
+         <input type="email" name="email" id="email"  placeholder="Enter the Email" required>
+        
+        <br>
+        <br>
+        
+        <label for="Title">Title:  </label>
+        <input type="text" name="title" id="title" required placeholder="Enter the Title">
+       
+        <br>
+        <br>
+        
+        <label for="Field">Field:  </label>
+        <textarea name="field" id="field" rows="2" cols="25" required></textarea>
+        
+        <br>
+        <br>
+       
+        <label for="Description">Description:  </label>
+        <textarea name="message" id="message" rows="10" cols="25" ; required placeholder="Enter your idea description in 800 words"></textarea>
+       
+        <br>
+        <br>
+
+        <label for="investment">Investment Required: </label>
+        <input type="text" name="investment" id="investment" required placeholder="Quote the Amount">
+       
+        <br>
+        <br>
+
+        <label>Status of Investment: </label>
+        <input type="text" name="status" id="status" required placeholder="status">
+
+        <br>
+        <br>
+       
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
